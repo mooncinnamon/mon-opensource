@@ -1,3 +1,8 @@
+# Team members
+  B289040 박정민
+  B689021 문유빈
+  B489077 진호용
+
 # mon(1)
 
   Super-simple monitoring program.
