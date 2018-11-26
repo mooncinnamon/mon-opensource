@@ -1,0 +1,615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>mon: src/mon.c 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">mon
+   &#160;<span id="projectnumber">1.2.3</span>
+   </div>
+   <div id="projectbrief">Single process monitor program</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mon_8c.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">데이터 구조</a> &#124;
+<a href="#define-members">매크로</a> &#124;
+<a href="#func-members">함수</a>  </div>
+  <div class="headertitle">
+<div class="title">mon.c 파일 참조</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;signal.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/time.h&gt;</code><br />
+<code>#include &lt;sys/wait.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="commander_8h_source.html">commander.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ms_8h_source.html">ms.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+mon.c에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="mon_8c__incl.png" border="0" usemap="#src_2mon_8c" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div>
+<p><a href="mon_8c_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+데이터 구조</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmonitor__t.html">monitor_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+매크로</h2></td></tr>
+<tr class="memitem:a1c6d5de492ac61ad29aec7aa9a436bbf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a1c6d5de492ac61ad29aec7aa9a436bbf">VERSION</a>&#160;&#160;&#160;&quot;1.2.3&quot;</td></tr>
+<tr class="separator:a1c6d5de492ac61ad29aec7aa9a436bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aae08d19894f7af60ec6e296a52561e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a8aae08d19894f7af60ec6e296a52561e">log</a>(fmt,  args...)</td></tr>
+<tr class="separator:a8aae08d19894f7af60ec6e296a52561e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+함수</h2></td></tr>
+<tr class="memitem:aad9796c174f7ef5d226cd169f2520fd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#aad9796c174f7ef5d226cd169f2520fd5">error</a> (char *msg)</td></tr>
+<tr class="separator:aad9796c174f7ef5d226cd169f2520fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59435c8af93db3371e4fa4631892cc76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a59435c8af93db3371e4fa4631892cc76">alive</a> (pid_t pid)</td></tr>
+<tr class="separator:a59435c8af93db3371e4fa4631892cc76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad89de95af5388d87de7d39a8e804080f"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#ad89de95af5388d87de7d39a8e804080f">timestamp</a> ()</td></tr>
+<tr class="separator:ad89de95af5388d87de7d39a8e804080f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d028200c09b230b640afeff885842b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a6d028200c09b230b640afeff885842b7">write_pidfile</a> (const char *file, pid_t pid)</td></tr>
+<tr class="separator:a6d028200c09b230b640afeff885842b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96abea6f0913b47e66c5721069662770"><td class="memItemLeft" align="right" valign="top">pid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a96abea6f0913b47e66c5721069662770">read_pidfile</a> (const char *file)</td></tr>
+<tr class="separator:a96abea6f0913b47e66c5721069662770"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5a93c8561455a70bf611b9f546accd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#ae5a93c8561455a70bf611b9f546accd2">show_status_of</a> (const char *pidfile)</td></tr>
+<tr class="separator:ae5a93c8561455a70bf611b9f546accd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c82fa443a98da5a82af3f4e9cb9880"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a20c82fa443a98da5a82af3f4e9cb9880">redirect_stdio_to</a> (const char *file)</td></tr>
+<tr class="separator:a20c82fa443a98da5a82af3f4e9cb9880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb558666024d8c16dd60af09263d619a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#afb558666024d8c16dd60af09263d619a">graceful_exit</a> (int sig)</td></tr>
+<tr class="separator:afb558666024d8c16dd60af09263d619a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a869452f0c0952acd39230fcf0ef89c1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a869452f0c0952acd39230fcf0ef89c1e">daemonize</a> ()</td></tr>
+<tr class="separator:a869452f0c0952acd39230fcf0ef89c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0cd49657f0e49df28cf8952a8922149"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#ab0cd49657f0e49df28cf8952a8922149">exec_restart_command</a> (<a class="el" href="structmonitor__t.html">monitor_t</a> *monitor, pid_t pid)</td></tr>
+<tr class="separator:ab0cd49657f0e49df28cf8952a8922149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29c30750029f6ddcceb514483beb2aa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a29c30750029f6ddcceb514483beb2aa3">exec_error_command</a> (<a class="el" href="structmonitor__t.html">monitor_t</a> *monitor, pid_t pid)</td></tr>
+<tr class="separator:a29c30750029f6ddcceb514483beb2aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfc962877a424d4df16c8ebf5f26bcea"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#acfc962877a424d4df16c8ebf5f26bcea">ms_since_last_restart</a> (<a class="el" href="structmonitor__t.html">monitor_t</a> *monitor)</td></tr>
+<tr class="separator:acfc962877a424d4df16c8ebf5f26bcea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb34d76b142816e4815842599d6acd1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a8eb34d76b142816e4815842599d6acd1">attempts_exceeded</a> (<a class="el" href="structmonitor__t.html">monitor_t</a> *monitor, int64_t ms)</td></tr>
+<tr class="separator:a8eb34d76b142816e4815842599d6acd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54835cbff0d59570b4cb0b8b604384e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a54835cbff0d59570b4cb0b8b604384e5">start</a> (const char *cmd, <a class="el" href="structmonitor__t.html">monitor_t</a> *monitor)</td></tr>
+<tr class="separator:a54835cbff0d59570b4cb0b8b604384e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">매크로 문서화</h2>
+<a id="a8aae08d19894f7af60ec6e296a52561e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aae08d19894f7af60ec6e296a52561e">&#9670;&nbsp;</a></span>log</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define log</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">fmt, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">args...&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>값:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div><div class="line">    if (prefix) { \</div><div class="line">      printf(<span class="stringliteral">&quot;mon : %s : &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, prefix, ##args); \</div><div class="line">      fflush(stdout); \</div><div class="line">    } <span class="keywordflow">else</span> { \</div><div class="line">      printf(<span class="stringliteral">&quot;mon : &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##args); \</div><div class="line">      fflush(stdout); \</div><div class="line">    } \</div><div class="line">  } <span class="keywordflow">while</span>(0)</div></div><!-- fragment -->
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00065">65</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a1c6d5de492ac61ad29aec7aa9a436bbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c6d5de492ac61ad29aec7aa9a436bbf">&#9670;&nbsp;</a></span>VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VERSION&#160;&#160;&#160;&quot;1.2.3&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00028">28</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<h2 class="groupheader">함수 문서화</h2>
+<a id="a59435c8af93db3371e4fa4631892cc76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59435c8af93db3371e4fa4631892cc76">&#9670;&nbsp;</a></span>alive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int alive </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00091">91</a> 번째 라인에서 정의되었습니다.</p>
+<div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="mon_8c_a59435c8af93db3371e4fa4631892cc76_icgraph.png" border="0" usemap="#mon_8c_a59435c8af93db3371e4fa4631892cc76_icgraph" alt=""/></div>
+<!-- MAP 1 -->
+</div>
+
+</div>
+</div>
+<a id="a8eb34d76b142816e4815842599d6acd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb34d76b142816e4815842599d6acd1">&#9670;&nbsp;</a></span>attempts_exceeded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int attempts_exceeded </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmonitor__t.html">monitor_t</a> *&#160;</td>
+          <td class="paramname"><em>monitor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>ms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00306">306</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a869452f0c0952acd39230fcf0ef89c1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a869452f0c0952acd39230fcf0ef89c1e">&#9670;&nbsp;</a></span>daemonize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void daemonize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00254">254</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="aad9796c174f7ef5d226cd169f2520fd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad9796c174f7ef5d226cd169f2520fd5">&#9670;&nbsp;</a></span>error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void error </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00081">81</a> 번째 라인에서 정의되었습니다.</p>
+<div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="mon_8c_aad9796c174f7ef5d226cd169f2520fd5_icgraph.png" border="0" usemap="#mon_8c_aad9796c174f7ef5d226cd169f2520fd5_icgraph" alt=""/></div>
+<!-- MAP 2 -->
+</div>
+
+</div>
+</div>
+<a id="a29c30750029f6ddcceb514483beb2aa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29c30750029f6ddcceb514483beb2aa3">&#9670;&nbsp;</a></span>exec_error_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exec_error_command </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmonitor__t.html">monitor_t</a> *&#160;</td>
+          <td class="paramname"><em>monitor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00281">281</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="ab0cd49657f0e49df28cf8952a8922149"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0cd49657f0e49df28cf8952a8922149">&#9670;&nbsp;</a></span>exec_restart_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exec_restart_command </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmonitor__t.html">monitor_t</a> *&#160;</td>
+          <td class="paramname"><em>monitor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00268">268</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="afb558666024d8c16dd60af09263d619a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb558666024d8c16dd60af09263d619a">&#9670;&nbsp;</a></span>graceful_exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void graceful_exit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sig</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00237">237</a> 번째 라인에서 정의되었습니다.</p>
+<div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="mon_8c_afb558666024d8c16dd60af09263d619a_cgraph.png" border="0" usemap="#mon_8c_afb558666024d8c16dd60af09263d619a_cgraph" alt=""/></div>
+<!-- MAP 3 -->
+</div>
+
+</div>
+</div>
+<a id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c04138a5bfe5d72780bb7e82a18e627">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00498">498</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="acfc962877a424d4df16c8ebf5f26bcea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfc962877a424d4df16c8ebf5f26bcea">&#9670;&nbsp;</a></span>ms_since_last_restart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t ms_since_last_restart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmonitor__t.html">monitor_t</a> *&#160;</td>
+          <td class="paramname"><em>monitor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00294">294</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a96abea6f0913b47e66c5721069662770"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96abea6f0913b47e66c5721069662770">&#9670;&nbsp;</a></span>read_pidfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pid_t read_pidfile </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00126">126</a> 번째 라인에서 정의되었습니다.</p>
+<div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="mon_8c_a96abea6f0913b47e66c5721069662770_icgraph.png" border="0" usemap="#mon_8c_a96abea6f0913b47e66c5721069662770_icgraph" alt=""/></div>
+<!-- MAP 4 -->
+</div>
+
+</div>
+</div>
+<a id="a20c82fa443a98da5a82af3f4e9cb9880"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20c82fa443a98da5a82af3f4e9cb9880">&#9670;&nbsp;</a></span>redirect_stdio_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void redirect_stdio_to </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00213">213</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="ae5a93c8561455a70bf611b9f546accd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5a93c8561455a70bf611b9f546accd2">&#9670;&nbsp;</a></span>show_status_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void show_status_of </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pidfile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00160">160</a> 번째 라인에서 정의되었습니다.</p>
+<div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="mon_8c_ae5a93c8561455a70bf611b9f546accd2_cgraph.png" border="0" usemap="#mon_8c_ae5a93c8561455a70bf611b9f546accd2_cgraph" alt=""/></div>
+<!-- MAP 5 -->
+</div>
+
+</div>
+</div>
+<a id="a54835cbff0d59570b4cb0b8b604384e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54835cbff0d59570b4cb0b8b604384e5">&#9670;&nbsp;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void start </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmonitor__t.html">monitor_t</a> *&#160;</td>
+          <td class="paramname"><em>monitor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00328">328</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="ad89de95af5388d87de7d39a8e804080f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89de95af5388d87de7d39a8e804080f">&#9670;&nbsp;</a></span>timestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t timestamp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00100">100</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a6d028200c09b230b640afeff885842b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d028200c09b230b640afeff885842b7">&#9670;&nbsp;</a></span>write_pidfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void write_pidfile </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="mon_8c_source.html">mon.c</a> 파일의 <a class="el" href="mon_8c_source.html#l00112">112</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="mon_8c.html">mon.c</a></li>
+    <li class="footer">다음에 의해 생성됨 : 
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
+</body>
+</html>

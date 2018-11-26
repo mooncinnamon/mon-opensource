@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>mon: deps/ms.h 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">mon
+   &#160;<span id="projectnumber">1.2.3</span>
+   </div>
+   <div id="projectbrief">Single process monitor program</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ms_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ms.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ms_8h.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// ms.h</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Copyright (c) 2012 TJ Holowaychuk &lt;tj@vision-media.ca&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef MS</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MS</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// max buffer length</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef MS_MAX</span></div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="ms_8h.html#a8c7280658e236dfb3bbe98add9f125fb">   14</a></span>&#160;<span class="preprocessor">#define MS_MAX 256</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// prototypes</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">long</span> <span class="keywordtype">long</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<a class="code" href="ms_8h.html#a7bb1b5f26e8f8b34da1b8ab839c44f33">string_to_microseconds</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *str);</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">long</span> <span class="keywordtype">long</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="ms_8h.html#a64c02b08fd831d934213dd843c482a3f">string_to_milliseconds</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *str);</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">long</span> <span class="keywordtype">long</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="ms_8h.html#ad126fba668f39937411a0b4fdc87e8f5">string_to_seconds</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *str);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">char</span> *</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="ms_8h.html#a9f1d772ac1d3f90c4bd3f8efedfd76e5">milliseconds_to_string</a>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> ms);</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">char</span> *</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="ms_8h.html#a6136edd796b19c51ef56da61c8d9b71a">milliseconds_to_long_string</a>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> ms);</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="ms_8h_html_a7bb1b5f26e8f8b34da1b8ab839c44f33"><div class="ttname"><a href="ms_8h.html#a7bb1b5f26e8f8b34da1b8ab839c44f33">string_to_microseconds</a></div><div class="ttdeci">long long string_to_microseconds(const char *str)</div><div class="ttdef"><b>Definition:</b> <a href="ms_8c_source.html#l00038">ms.c:38</a></div></div>
+<div class="ttc" id="ms_8h_html_a64c02b08fd831d934213dd843c482a3f"><div class="ttname"><a href="ms_8h.html#a64c02b08fd831d934213dd843c482a3f">string_to_milliseconds</a></div><div class="ttdeci">long long string_to_milliseconds(const char *str)</div><div class="ttdef"><b>Definition:</b> <a href="ms_8c_source.html#l00059">ms.c:59</a></div></div>
+<div class="ttc" id="ms_8h_html_a9f1d772ac1d3f90c4bd3f8efedfd76e5"><div class="ttname"><a href="ms_8h.html#a9f1d772ac1d3f90c4bd3f8efedfd76e5">milliseconds_to_string</a></div><div class="ttdeci">char * milliseconds_to_string(long long ms)</div><div class="ttdef"><b>Definition:</b> <a href="ms_8c_source.html#l00091">ms.c:91</a></div></div>
+<div class="ttc" id="ms_8h_html_a6136edd796b19c51ef56da61c8d9b71a"><div class="ttname"><a href="ms_8h.html#a6136edd796b19c51ef56da61c8d9b71a">milliseconds_to_long_string</a></div><div class="ttdeci">char * milliseconds_to_long_string(long long ms)</div><div class="ttdef"><b>Definition:</b> <a href="ms_8c_source.html#l00115">ms.c:115</a></div></div>
+<div class="ttc" id="ms_8h_html_ad126fba668f39937411a0b4fdc87e8f5"><div class="ttname"><a href="ms_8h.html#ad126fba668f39937411a0b4fdc87e8f5">string_to_seconds</a></div><div class="ttdeci">long long string_to_seconds(const char *str)</div><div class="ttdef"><b>Definition:</b> <a href="ms_8c_source.html#l00079">ms.c:79</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_94a36784afa54c0b50996002372b429e.html">deps</a></li><li class="navelem"><a class="el" href="ms_8h.html">ms.h</a></li>
+    <li class="footer">다음에 의해 생성됨 : 
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
+</body>
+</html>
