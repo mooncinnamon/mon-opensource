@@ -1,0 +1,242 @@
+\hypertarget{ms_8c}{}\section{deps/ms.c 파일 참조}
+\label{ms_8c}\index{deps/ms.\+c@{deps/ms.\+c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ms.\+h\char`\"{}}\newline
+ms.\+c에 대한 include 의존 그래프
+% FIG 0
+\subsection*{매크로}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a8bad5acccba1d49a304777c2f92e1fc5}{U\+S\+\_\+\+M\+S\+EC}}~(long long)1000
+\item 
+\#define \mbox{\hyperlink{ms_8c_a8c699dc6e40b3ae0af34806bd8a110fe}{U\+S\+\_\+\+S\+EC}}~1000 $\ast$ \mbox{\hyperlink{ms_8c_a8bad5acccba1d49a304777c2f92e1fc5}{U\+S\+\_\+\+M\+S\+EC}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a1132935b152e874c5add6f5618fae1fb}{U\+S\+\_\+\+M\+IN}}~60 $\ast$ \mbox{\hyperlink{ms_8c_a8c699dc6e40b3ae0af34806bd8a110fe}{U\+S\+\_\+\+S\+EC}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a3a9acab916667a69623604643b4b7d03}{U\+S\+\_\+\+H\+O\+UR}}~60 $\ast$ \mbox{\hyperlink{ms_8c_a1132935b152e874c5add6f5618fae1fb}{U\+S\+\_\+\+M\+IN}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a410af41e37a8e99936c482c324ccacd9}{U\+S\+\_\+\+D\+AY}}~24 $\ast$ \mbox{\hyperlink{ms_8c_a3a9acab916667a69623604643b4b7d03}{U\+S\+\_\+\+H\+O\+UR}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a3dfd8953cec635b7562707541228033f}{U\+S\+\_\+\+W\+E\+EK}}~7 $\ast$ \mbox{\hyperlink{ms_8c_a410af41e37a8e99936c482c324ccacd9}{U\+S\+\_\+\+D\+AY}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a188e087570d2336f6a6d990191108a84}{U\+S\+\_\+\+Y\+E\+AR}}~52 $\ast$ \mbox{\hyperlink{ms_8c_a3dfd8953cec635b7562707541228033f}{U\+S\+\_\+\+W\+E\+EK}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a0fa5eb2527b8b94d5f64ad5004dccbe1}{M\+S\+\_\+\+S\+EC}}~(long long)1000
+\item 
+\#define \mbox{\hyperlink{ms_8c_a9fe1ec1956a1e7b2c92cd2dc43bc284b}{M\+S\+\_\+\+M\+IN}}~60 $\ast$ \mbox{\hyperlink{ms_8c_a0fa5eb2527b8b94d5f64ad5004dccbe1}{M\+S\+\_\+\+S\+EC}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_ac3868d8e55d78bcd03a97f6789ec72a9}{M\+S\+\_\+\+H\+O\+UR}}~60 $\ast$ \mbox{\hyperlink{ms_8c_a9fe1ec1956a1e7b2c92cd2dc43bc284b}{M\+S\+\_\+\+M\+IN}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_ab29ea1e5aeead3c80bd4dbfbe3ca13a6}{M\+S\+\_\+\+D\+AY}}~24 $\ast$ \mbox{\hyperlink{ms_8c_ac3868d8e55d78bcd03a97f6789ec72a9}{M\+S\+\_\+\+H\+O\+UR}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a53daaad2d51e101f927ebacd19cd0f7f}{M\+S\+\_\+\+W\+E\+EK}}~7 $\ast$ \mbox{\hyperlink{ms_8c_ab29ea1e5aeead3c80bd4dbfbe3ca13a6}{M\+S\+\_\+\+D\+AY}}
+\item 
+\#define \mbox{\hyperlink{ms_8c_a09663b5e71d587b632611cab07647910}{M\+S\+\_\+\+Y\+E\+AR}}~52 $\ast$ \mbox{\hyperlink{ms_8c_a53daaad2d51e101f927ebacd19cd0f7f}{M\+S\+\_\+\+W\+E\+EK}}
+\end{DoxyCompactItemize}
+\subsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+long long \mbox{\hyperlink{ms_8c_a7bb1b5f26e8f8b34da1b8ab839c44f33}{string\+\_\+to\+\_\+microseconds}} (const char $\ast$str)
+\item 
+long long \mbox{\hyperlink{ms_8c_a64c02b08fd831d934213dd843c482a3f}{string\+\_\+to\+\_\+milliseconds}} (const char $\ast$str)
+\item 
+long long \mbox{\hyperlink{ms_8c_ad126fba668f39937411a0b4fdc87e8f5}{string\+\_\+to\+\_\+seconds}} (const char $\ast$str)
+\item 
+char $\ast$ \mbox{\hyperlink{ms_8c_a9f1d772ac1d3f90c4bd3f8efedfd76e5}{milliseconds\+\_\+to\+\_\+string}} (long long ms)
+\item 
+char $\ast$ \mbox{\hyperlink{ms_8c_a6136edd796b19c51ef56da61c8d9b71a}{milliseconds\+\_\+to\+\_\+long\+\_\+string}} (long long ms)
+\end{DoxyCompactItemize}
+
+
+\subsection{매크로 문서화}
+\mbox{\Hypertarget{ms_8c_ab29ea1e5aeead3c80bd4dbfbe3ca13a6}\label{ms_8c_ab29ea1e5aeead3c80bd4dbfbe3ca13a6}} 
+\index{ms.\+c@{ms.\+c}!M\+S\+\_\+\+D\+AY@{M\+S\+\_\+\+D\+AY}}
+\index{M\+S\+\_\+\+D\+AY@{M\+S\+\_\+\+D\+AY}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{M\+S\+\_\+\+D\+AY}{MS\_DAY}}
+{\footnotesize\ttfamily \#define M\+S\+\_\+\+D\+AY~24 $\ast$ \mbox{\hyperlink{ms_8c_ac3868d8e55d78bcd03a97f6789ec72a9}{M\+S\+\_\+\+H\+O\+UR}}}
+
+
+
+ms.\+c 파일의 28 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_ac3868d8e55d78bcd03a97f6789ec72a9}\label{ms_8c_ac3868d8e55d78bcd03a97f6789ec72a9}} 
+\index{ms.\+c@{ms.\+c}!M\+S\+\_\+\+H\+O\+UR@{M\+S\+\_\+\+H\+O\+UR}}
+\index{M\+S\+\_\+\+H\+O\+UR@{M\+S\+\_\+\+H\+O\+UR}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{M\+S\+\_\+\+H\+O\+UR}{MS\_HOUR}}
+{\footnotesize\ttfamily \#define M\+S\+\_\+\+H\+O\+UR~60 $\ast$ \mbox{\hyperlink{ms_8c_a9fe1ec1956a1e7b2c92cd2dc43bc284b}{M\+S\+\_\+\+M\+IN}}}
+
+
+
+ms.\+c 파일의 27 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a9fe1ec1956a1e7b2c92cd2dc43bc284b}\label{ms_8c_a9fe1ec1956a1e7b2c92cd2dc43bc284b}} 
+\index{ms.\+c@{ms.\+c}!M\+S\+\_\+\+M\+IN@{M\+S\+\_\+\+M\+IN}}
+\index{M\+S\+\_\+\+M\+IN@{M\+S\+\_\+\+M\+IN}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{M\+S\+\_\+\+M\+IN}{MS\_MIN}}
+{\footnotesize\ttfamily \#define M\+S\+\_\+\+M\+IN~60 $\ast$ \mbox{\hyperlink{ms_8c_a0fa5eb2527b8b94d5f64ad5004dccbe1}{M\+S\+\_\+\+S\+EC}}}
+
+
+
+ms.\+c 파일의 26 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a0fa5eb2527b8b94d5f64ad5004dccbe1}\label{ms_8c_a0fa5eb2527b8b94d5f64ad5004dccbe1}} 
+\index{ms.\+c@{ms.\+c}!M\+S\+\_\+\+S\+EC@{M\+S\+\_\+\+S\+EC}}
+\index{M\+S\+\_\+\+S\+EC@{M\+S\+\_\+\+S\+EC}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{M\+S\+\_\+\+S\+EC}{MS\_SEC}}
+{\footnotesize\ttfamily \#define M\+S\+\_\+\+S\+EC~(long long)1000}
+
+
+
+ms.\+c 파일의 25 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a53daaad2d51e101f927ebacd19cd0f7f}\label{ms_8c_a53daaad2d51e101f927ebacd19cd0f7f}} 
+\index{ms.\+c@{ms.\+c}!M\+S\+\_\+\+W\+E\+EK@{M\+S\+\_\+\+W\+E\+EK}}
+\index{M\+S\+\_\+\+W\+E\+EK@{M\+S\+\_\+\+W\+E\+EK}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{M\+S\+\_\+\+W\+E\+EK}{MS\_WEEK}}
+{\footnotesize\ttfamily \#define M\+S\+\_\+\+W\+E\+EK~7 $\ast$ \mbox{\hyperlink{ms_8c_ab29ea1e5aeead3c80bd4dbfbe3ca13a6}{M\+S\+\_\+\+D\+AY}}}
+
+
+
+ms.\+c 파일의 29 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a09663b5e71d587b632611cab07647910}\label{ms_8c_a09663b5e71d587b632611cab07647910}} 
+\index{ms.\+c@{ms.\+c}!M\+S\+\_\+\+Y\+E\+AR@{M\+S\+\_\+\+Y\+E\+AR}}
+\index{M\+S\+\_\+\+Y\+E\+AR@{M\+S\+\_\+\+Y\+E\+AR}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{M\+S\+\_\+\+Y\+E\+AR}{MS\_YEAR}}
+{\footnotesize\ttfamily \#define M\+S\+\_\+\+Y\+E\+AR~52 $\ast$ \mbox{\hyperlink{ms_8c_a53daaad2d51e101f927ebacd19cd0f7f}{M\+S\+\_\+\+W\+E\+EK}}}
+
+
+
+ms.\+c 파일의 30 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a410af41e37a8e99936c482c324ccacd9}\label{ms_8c_a410af41e37a8e99936c482c324ccacd9}} 
+\index{ms.\+c@{ms.\+c}!U\+S\+\_\+\+D\+AY@{U\+S\+\_\+\+D\+AY}}
+\index{U\+S\+\_\+\+D\+AY@{U\+S\+\_\+\+D\+AY}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{U\+S\+\_\+\+D\+AY}{US\_DAY}}
+{\footnotesize\ttfamily \#define U\+S\+\_\+\+D\+AY~24 $\ast$ \mbox{\hyperlink{ms_8c_a3a9acab916667a69623604643b4b7d03}{U\+S\+\_\+\+H\+O\+UR}}}
+
+
+
+ms.\+c 파일의 19 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a3a9acab916667a69623604643b4b7d03}\label{ms_8c_a3a9acab916667a69623604643b4b7d03}} 
+\index{ms.\+c@{ms.\+c}!U\+S\+\_\+\+H\+O\+UR@{U\+S\+\_\+\+H\+O\+UR}}
+\index{U\+S\+\_\+\+H\+O\+UR@{U\+S\+\_\+\+H\+O\+UR}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{U\+S\+\_\+\+H\+O\+UR}{US\_HOUR}}
+{\footnotesize\ttfamily \#define U\+S\+\_\+\+H\+O\+UR~60 $\ast$ \mbox{\hyperlink{ms_8c_a1132935b152e874c5add6f5618fae1fb}{U\+S\+\_\+\+M\+IN}}}
+
+
+
+ms.\+c 파일의 18 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a1132935b152e874c5add6f5618fae1fb}\label{ms_8c_a1132935b152e874c5add6f5618fae1fb}} 
+\index{ms.\+c@{ms.\+c}!U\+S\+\_\+\+M\+IN@{U\+S\+\_\+\+M\+IN}}
+\index{U\+S\+\_\+\+M\+IN@{U\+S\+\_\+\+M\+IN}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{U\+S\+\_\+\+M\+IN}{US\_MIN}}
+{\footnotesize\ttfamily \#define U\+S\+\_\+\+M\+IN~60 $\ast$ \mbox{\hyperlink{ms_8c_a8c699dc6e40b3ae0af34806bd8a110fe}{U\+S\+\_\+\+S\+EC}}}
+
+
+
+ms.\+c 파일의 17 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a8bad5acccba1d49a304777c2f92e1fc5}\label{ms_8c_a8bad5acccba1d49a304777c2f92e1fc5}} 
+\index{ms.\+c@{ms.\+c}!U\+S\+\_\+\+M\+S\+EC@{U\+S\+\_\+\+M\+S\+EC}}
+\index{U\+S\+\_\+\+M\+S\+EC@{U\+S\+\_\+\+M\+S\+EC}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{U\+S\+\_\+\+M\+S\+EC}{US\_MSEC}}
+{\footnotesize\ttfamily \#define U\+S\+\_\+\+M\+S\+EC~(long long)1000}
+
+
+
+ms.\+c 파일의 15 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a8c699dc6e40b3ae0af34806bd8a110fe}\label{ms_8c_a8c699dc6e40b3ae0af34806bd8a110fe}} 
+\index{ms.\+c@{ms.\+c}!U\+S\+\_\+\+S\+EC@{U\+S\+\_\+\+S\+EC}}
+\index{U\+S\+\_\+\+S\+EC@{U\+S\+\_\+\+S\+EC}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{U\+S\+\_\+\+S\+EC}{US\_SEC}}
+{\footnotesize\ttfamily \#define U\+S\+\_\+\+S\+EC~1000 $\ast$ \mbox{\hyperlink{ms_8c_a8bad5acccba1d49a304777c2f92e1fc5}{U\+S\+\_\+\+M\+S\+EC}}}
+
+
+
+ms.\+c 파일의 16 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a3dfd8953cec635b7562707541228033f}\label{ms_8c_a3dfd8953cec635b7562707541228033f}} 
+\index{ms.\+c@{ms.\+c}!U\+S\+\_\+\+W\+E\+EK@{U\+S\+\_\+\+W\+E\+EK}}
+\index{U\+S\+\_\+\+W\+E\+EK@{U\+S\+\_\+\+W\+E\+EK}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{U\+S\+\_\+\+W\+E\+EK}{US\_WEEK}}
+{\footnotesize\ttfamily \#define U\+S\+\_\+\+W\+E\+EK~7 $\ast$ \mbox{\hyperlink{ms_8c_a410af41e37a8e99936c482c324ccacd9}{U\+S\+\_\+\+D\+AY}}}
+
+
+
+ms.\+c 파일의 20 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a188e087570d2336f6a6d990191108a84}\label{ms_8c_a188e087570d2336f6a6d990191108a84}} 
+\index{ms.\+c@{ms.\+c}!U\+S\+\_\+\+Y\+E\+AR@{U\+S\+\_\+\+Y\+E\+AR}}
+\index{U\+S\+\_\+\+Y\+E\+AR@{U\+S\+\_\+\+Y\+E\+AR}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{U\+S\+\_\+\+Y\+E\+AR}{US\_YEAR}}
+{\footnotesize\ttfamily \#define U\+S\+\_\+\+Y\+E\+AR~52 $\ast$ \mbox{\hyperlink{ms_8c_a3dfd8953cec635b7562707541228033f}{U\+S\+\_\+\+W\+E\+EK}}}
+
+
+
+ms.\+c 파일의 21 번째 라인에서 정의되었습니다.
+
+
+
+\subsection{함수 문서화}
+\mbox{\Hypertarget{ms_8c_a6136edd796b19c51ef56da61c8d9b71a}\label{ms_8c_a6136edd796b19c51ef56da61c8d9b71a}} 
+\index{ms.\+c@{ms.\+c}!milliseconds\+\_\+to\+\_\+long\+\_\+string@{milliseconds\+\_\+to\+\_\+long\+\_\+string}}
+\index{milliseconds\+\_\+to\+\_\+long\+\_\+string@{milliseconds\+\_\+to\+\_\+long\+\_\+string}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{milliseconds\+\_\+to\+\_\+long\+\_\+string()}{milliseconds\_to\_long\_string()}}
+{\footnotesize\ttfamily char$\ast$ milliseconds\+\_\+to\+\_\+long\+\_\+string (\begin{DoxyParamCaption}\item[{long long}]{ms }\end{DoxyParamCaption})}
+
+
+
+ms.\+c 파일의 115 번째 라인에서 정의되었습니다.
+
+이 함수를 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 1
+\mbox{\Hypertarget{ms_8c_a9f1d772ac1d3f90c4bd3f8efedfd76e5}\label{ms_8c_a9f1d772ac1d3f90c4bd3f8efedfd76e5}} 
+\index{ms.\+c@{ms.\+c}!milliseconds\+\_\+to\+\_\+string@{milliseconds\+\_\+to\+\_\+string}}
+\index{milliseconds\+\_\+to\+\_\+string@{milliseconds\+\_\+to\+\_\+string}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{milliseconds\+\_\+to\+\_\+string()}{milliseconds\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ milliseconds\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{long long}]{ms }\end{DoxyParamCaption})}
+
+
+
+ms.\+c 파일의 91 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a7bb1b5f26e8f8b34da1b8ab839c44f33}\label{ms_8c_a7bb1b5f26e8f8b34da1b8ab839c44f33}} 
+\index{ms.\+c@{ms.\+c}!string\+\_\+to\+\_\+microseconds@{string\+\_\+to\+\_\+microseconds}}
+\index{string\+\_\+to\+\_\+microseconds@{string\+\_\+to\+\_\+microseconds}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{string\+\_\+to\+\_\+microseconds()}{string\_to\_microseconds()}}
+{\footnotesize\ttfamily long long string\+\_\+to\+\_\+microseconds (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+ms.\+c 파일의 38 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{ms_8c_a64c02b08fd831d934213dd843c482a3f}\label{ms_8c_a64c02b08fd831d934213dd843c482a3f}} 
+\index{ms.\+c@{ms.\+c}!string\+\_\+to\+\_\+milliseconds@{string\+\_\+to\+\_\+milliseconds}}
+\index{string\+\_\+to\+\_\+milliseconds@{string\+\_\+to\+\_\+milliseconds}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{string\+\_\+to\+\_\+milliseconds()}{string\_to\_milliseconds()}}
+{\footnotesize\ttfamily long long string\+\_\+to\+\_\+milliseconds (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+ms.\+c 파일의 59 번째 라인에서 정의되었습니다.
+
+이 함수를 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 2
+\mbox{\Hypertarget{ms_8c_ad126fba668f39937411a0b4fdc87e8f5}\label{ms_8c_ad126fba668f39937411a0b4fdc87e8f5}} 
+\index{ms.\+c@{ms.\+c}!string\+\_\+to\+\_\+seconds@{string\+\_\+to\+\_\+seconds}}
+\index{string\+\_\+to\+\_\+seconds@{string\+\_\+to\+\_\+seconds}!ms.\+c@{ms.\+c}}
+\subsubsection{\texorpdfstring{string\+\_\+to\+\_\+seconds()}{string\_to\_seconds()}}
+{\footnotesize\ttfamily long long string\+\_\+to\+\_\+seconds (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+ms.\+c 파일의 79 번째 라인에서 정의되었습니다.
+
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 3

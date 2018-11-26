@@ -1,0 +1,81 @@
+\hypertarget{commander_8c}{}\section{deps/commander.c 파일 참조}
+\label{commander_8c}\index{deps/commander.\+c@{deps/commander.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}commander.\+h\char`\"{}}\newline
+commander.\+c에 대한 include 의존 그래프
+% FIG 0
+\subsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{commander_8c_ad6fd5e1e0c39ee07821b38b951b3c6b4}{command\+\_\+help}} (\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$self)
+\item 
+void \mbox{\hyperlink{commander_8c_ac2b0413942927df22c77edcfb63adf92}{command\+\_\+init}} (\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$self, const char $\ast$name, const char $\ast$version)
+\item 
+void \mbox{\hyperlink{commander_8c_adf86163b994b51d781fe3522eff78381}{command\+\_\+free}} (\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$self)
+\item 
+void \mbox{\hyperlink{commander_8c_ac64bb44a6e37c6448213d5c7d0775d01}{command\+\_\+option}} (\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$self, const char $\ast$small, const char $\ast$large, const char $\ast$desc, \mbox{\hyperlink{commander_8h_a110927182d6dc22f3cf1ed2382cfed0e}{command\+\_\+callback\+\_\+t}} cb)
+\item 
+void \mbox{\hyperlink{commander_8c_a8e43b145f69b0970026b31b13a6285a7}{command\+\_\+parse}} (\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$self, int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{함수 문서화}
+\mbox{\Hypertarget{commander_8c_adf86163b994b51d781fe3522eff78381}\label{commander_8c_adf86163b994b51d781fe3522eff78381}} 
+\index{commander.\+c@{commander.\+c}!command\+\_\+free@{command\+\_\+free}}
+\index{command\+\_\+free@{command\+\_\+free}!commander.\+c@{commander.\+c}}
+\subsubsection{\texorpdfstring{command\+\_\+free()}{command\_free()}}
+{\footnotesize\ttfamily void command\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+commander.\+c 파일의 77 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{commander_8c_ad6fd5e1e0c39ee07821b38b951b3c6b4}\label{commander_8c_ad6fd5e1e0c39ee07821b38b951b3c6b4}} 
+\index{commander.\+c@{commander.\+c}!command\+\_\+help@{command\+\_\+help}}
+\index{command\+\_\+help@{command\+\_\+help}!commander.\+c@{commander.\+c}}
+\subsubsection{\texorpdfstring{command\+\_\+help()}{command\_help()}}
+{\footnotesize\ttfamily void command\+\_\+help (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$}]{self }\end{DoxyParamCaption})}
+
+
+
+commander.\+c 파일의 39 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{commander_8c_ac2b0413942927df22c77edcfb63adf92}\label{commander_8c_ac2b0413942927df22c77edcfb63adf92}} 
+\index{commander.\+c@{commander.\+c}!command\+\_\+init@{command\+\_\+init}}
+\index{command\+\_\+init@{command\+\_\+init}!commander.\+c@{commander.\+c}}
+\subsubsection{\texorpdfstring{command\+\_\+init()}{command\_init()}}
+{\footnotesize\ttfamily void command\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$}]{self,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{version }\end{DoxyParamCaption})}
+
+
+
+commander.\+c 파일의 61 번째 라인에서 정의되었습니다.
+
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 1
+\mbox{\Hypertarget{commander_8c_ac64bb44a6e37c6448213d5c7d0775d01}\label{commander_8c_ac64bb44a6e37c6448213d5c7d0775d01}} 
+\index{commander.\+c@{commander.\+c}!command\+\_\+option@{command\+\_\+option}}
+\index{command\+\_\+option@{command\+\_\+option}!commander.\+c@{commander.\+c}}
+\subsubsection{\texorpdfstring{command\+\_\+option()}{command\_option()}}
+{\footnotesize\ttfamily void command\+\_\+option (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$}]{self,  }\item[{const char $\ast$}]{small,  }\item[{const char $\ast$}]{large,  }\item[{const char $\ast$}]{desc,  }\item[{\mbox{\hyperlink{commander_8h_a110927182d6dc22f3cf1ed2382cfed0e}{command\+\_\+callback\+\_\+t}}}]{cb }\end{DoxyParamCaption})}
+
+
+
+commander.\+c 파일의 163 번째 라인에서 정의되었습니다.
+
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 2
+이 함수를 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 3
+\mbox{\Hypertarget{commander_8c_a8e43b145f69b0970026b31b13a6285a7}\label{commander_8c_a8e43b145f69b0970026b31b13a6285a7}} 
+\index{commander.\+c@{commander.\+c}!command\+\_\+parse@{command\+\_\+parse}}
+\index{command\+\_\+parse@{command\+\_\+parse}!commander.\+c@{commander.\+c}}
+\subsubsection{\texorpdfstring{command\+\_\+parse()}{command\_parse()}}
+{\footnotesize\ttfamily void command\+\_\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{commander_8h_ab742005ee418c78c52c05872b8260d48}{command\+\_\+t}} $\ast$}]{self,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+commander.\+c 파일의 247 번째 라인에서 정의되었습니다.
+

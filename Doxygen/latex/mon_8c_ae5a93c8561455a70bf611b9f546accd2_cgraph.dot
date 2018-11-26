@@ -1,0 +1,11 @@
+digraph "show_status_of"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node27 [label="show_status_of",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node27 -> Node28 [color="midnightblue",fontsize="10",style="solid"];
+  Node28 [label="alive",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mon_8c.html#a59435c8af93db3371e4fa4631892cc76"];
+  Node27 -> Node29 [color="midnightblue",fontsize="10",style="solid"];
+  Node29 [label="milliseconds_to_long\l_string",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ms_8c.html#a6136edd796b19c51ef56da61c8d9b71a"];
+}
