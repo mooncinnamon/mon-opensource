@@ -322,55 +322,64 @@ attempts_exceeded(monitor_t *monitor, int64_t ms) {
   return 1;
 }
 
+/*
+ * read information files on the network interface
+ */
+#define FILE_SIZE 4096
+
 void
-read_network(long *rx_bytes, long *tx_bytes) {
-  const char *path_rxb = "/sys/class/net/eth0/statistics/rx_bytes"; //받은 바이트 수
-  const char *path_txb = "/sys/class/net/eth0/statistics/tx_bytes"; //전송 된 바이트 수
-  off_t size_rxb;
-  struct stat s_rxb;
-  off_t size_txb;
-  struct stat s_txb;
-
-  // stat rxb
-  if (stat(path_rxb, &s_rxb) < 0) {
-    perror("stat()");
-    exit(1);
-  }
-  // stat txb
-  if (stat(path_txb, &s_txb) < 0) {
-    perror("stat()");
-    exit(1);
-  }
-
-  size_rxb = s_rxb.st_size;
-  size_txb = s_txb.st_size;
+read_network(long *rx_bytes, long *tx_bytes, long *rx_packets, long *tx_packets) {
+  char *path_rxb = "/sys/class/net/eth0/statistics/rx_bytes"; //받은 바이트 수
+  char *path_txb = "/sys/class/net/eth0/statistics/tx_bytes"; //전송 된 바이트 수
+  char *path_rxp = "/sys/class/net/eth0/statistics/rx_packets"; //받은 패킷 수
+  char *path_txp = "/sys/class/net/eth0/statistics/tx_packets"; //전송 된 패킷 수
+  int fd_rxb;
+  int fd_txb;
+  int fd_rxp;
+  int fd_txp;
 
   // opens rxb
-  int fd_rxb = open(path_rxb, O_RDONLY, 0644);
-  if (fd_rxb < 0) {
-    perror("open()");
+  if ((fd_rxb = open(path_rxb, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_rxb)");
     exit(1);
   }
   // opens txb
-  int fd_txb = open(path_txb, O_RDONLY, 0644);
-  if (fd_txb < 0) {
-    perror("open()");
+  if ((fd_txb = open(path_txb, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_txb)");
+    exit(1);
+  }
+  // opens rxp
+  if ((fd_rxp = open(path_rxp, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_rxp)");
+    exit(1);
+  }
+  // opens txp
+  if ((fd_txp = open(path_txp, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_txp)");
     exit(1);
   }
 
   // read
-  char buf_rxb[size_rxb];
-  read(fd_rxb, buf_rxb, size_rxb);
-
-  char buf_txb[size_txb];
-  read(fd_txb, buf_txb, size_txb);
+  char buf_rxb[FILE_SIZE];
+  read(fd_rxb, buf_rxb, FILE_SIZE);
+  char buf_txb[FILE_SIZE];
+  read(fd_txb, buf_txb, FILE_SIZE);
+  char buf_rxp[FILE_SIZE];
+  read(fd_rxp, buf_rxp, FILE_SIZE);
+  char buf_txp[FILE_SIZE];
+  read(fd_txp, buf_txp, FILE_SIZE);
 
   // current bytes
   *rx_bytes = atoi(buf_rxb);
   *tx_bytes = atoi(buf_txb);
+  // number of current packets
+  *rx_packets = atoi(buf_rxp);
+  *tx_packets = atoi(buf_txp);
 
   close(fd_rxb);
   close(fd_txb);
+  close(fd_rxp);
+  close(fd_txp);
 }
 
 /*
@@ -381,19 +390,24 @@ void
 show_network() {
   long before_rxb;
   long before_txb;
+  long before_rxp;
+  long before_txp;
   long current_rxb;
   long current_txb;
+  long current_rxp;
+  long current_txp;
 
-  printf("%14s %12s %12s", "time", "received b/s", "transmit b/s\n");
+  printf("%14s %12s %12s %13s %13s\n", "time", "received b/s", "transmit b/s", "received pk/s", "transmit pk/s");
+
   while(1) {
-    read_network(&before_rxb, &before_txb);
+    read_network(&before_rxb, &before_txb, &before_rxp, &before_txp);
     sleep(1);
-    read_network(&current_rxb, &current_txb);
+    read_network(&current_rxb, &current_txb, &current_rxp, &current_txp);
 
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     printf("%.2d-%.2d %.2d:%.2d:%.2d ", tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-    printf("%8d b/s %8d b/s\n", (current_rxb-before_rxb), (current_txb-before_txb));
+    printf("%8d b/s %8d b/s %8d pk/s %8d pk/s\n", (current_rxb-before_rxb), (current_txb-before_txb), (current_rxp-before_rxp), (current_txp-before_txp));
     signal(SIGINT, SIG_DFL);
   }
 }
@@ -615,14 +629,14 @@ main(int argc, char **argv){
   command_option(&program, "-n", "--net", "show per-second packet information on the network interface", on_network);
   command_parse(&program, argc, argv);
 
-  if (monitor.show_status) {
-    if (!monitor.pidfile) error("--pidfile required");
-    show_status_of(monitor.pidfile);
+  if (monitor.network) {
+    show_network();
     exit(0);
   }
 
-  if (monitor.network) {
-    show_network();
+  if (monitor.show_status) {
+    if (!monitor.pidfile) error("--pidfile required");
+    show_status_of(monitor.pidfile);
     exit(0);
   }
 
