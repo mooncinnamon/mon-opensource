@@ -645,11 +645,6 @@ main(int argc, char **argv){
     exit(0);
   }
 
-  if (monitor.memory) {
-    // display_memory_usage();
-    exit(0);
-  }
-
   if (monitor.show_status) {
     if (!monitor.pidfile) error("--pidfile required");
     show_status_of(monitor.pidfile);
@@ -668,6 +663,11 @@ main(int argc, char **argv){
   if (monitor.daemon) {
     daemonize();
     redirect_stdio_to(monitor.logfile);
+  }
+
+  if (monitor.memory) {
+    // display_memory_usage();
+    exit(0);
   }
 
   // write mon pidfile
