@@ -434,15 +434,15 @@ exec: {
     case -1:
       perror("fork()");
       exit(1);
-    case 0:
+    case 0:     /* child */
       signal(SIGTERM, SIG_DFL);
       signal(SIGQUIT, SIG_DFL);
       log("sh -c \"%s\"", cmd);
       execl("/bin/sh", "sh", "-c", cmd, 0);
       perror("execl()");
       exit(1);
-    default:
-      log("child %d", pid);
+    default:    /* parent */
+      log("child %d", pid);     /* display child process pid */
 
       // write pidfile
       if (monitor->pidfile) {
@@ -450,7 +450,7 @@ exec: {
         write_pidfile(monitor->pidfile, pid);
       }
 
-      // wait for exit
+      // suspend parent until child exits
       waitpid(pid, &status, 0);
 
       // signalled
@@ -461,7 +461,7 @@ exec: {
         goto error;
       }
 
-      // check status
+      // check exit status
       if (WEXITSTATUS(status)) {
         log("exit(%d)", WEXITSTATUS(status));
         log("sleep(%d)", monitor->sleepsec);
