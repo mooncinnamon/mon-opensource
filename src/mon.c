@@ -449,19 +449,7 @@ exec: {
 
       // display memory usage
       if (monitor->memory) {
-        char *proc;
-
-        sprintf(proc, "cat /proc/%d/status", pid);
-        pid2 = fork();
-        if (pid2 == 0) {    /* child */
-          signal(SIGTERM, SIG_DFL);
-          signal(SIGQUIT, SIG_DFL);     
-          log("memory usage of current process");
-          execl("/bin/sh", "sh", "-c", proc, 0);
-        } else {            /* parent */
-          log("child %d (for memory)", pid2);
-          wait(NULL);
-        }     
+        /* add code to display memory usage for child process */
       }
 
       // write pidfile
