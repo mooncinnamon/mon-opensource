@@ -52,6 +52,7 @@ typedef struct {
   int attempts;
   bool show_status;
   bool network;
+  bool memory;
 } monitor_t;
 
 /*
