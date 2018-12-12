@@ -414,6 +414,13 @@ show_network() {
 }
 
 /*
+ * display memory usage of current program
+ */
+void display_memory_usage(void) {
+  printf("Testing code...\n");
+}
+
+/*
  * Monitor the given `cmd`.
  */
 
@@ -666,7 +673,7 @@ main(int argc, char **argv){
   }
 
   if (monitor.memory) {
-    // display_memory_usage();
+    display_memory_usage();
     exit(0);
   }
 
