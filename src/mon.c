@@ -450,6 +450,7 @@ exec: {
       // display memory usage
       if (monitor->memory) {
         /* add code to display memory usage for child process */
+        log("display memory usage");
       }
 
       // write pidfile
@@ -629,7 +630,8 @@ main(int argc, char **argv){
   monitor.logfile = "mon.log";
   monitor.daemon = 0;
   monitor.sleepsec = 1;
-  monitor.max_attempts = 10;
+  // monitor.max_attempts = 10
+  monitor.max_attempts = 3;     // for testing
   monitor.attempts = 0;
   monitor.last_restart_at = 0;
   monitor.clock = 60000;
