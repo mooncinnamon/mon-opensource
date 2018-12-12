@@ -441,28 +441,31 @@ exec: {
       signal(SIGTERM, SIG_DFL);
       signal(SIGQUIT, SIG_DFL);
       log("sh -c \"%s\"", cmd);
-      execl("/bin/sh", "sh", "-c", cmd, 0);     /* pid does not change */
-      perror("execl()");
-      exit(1);
-    default:    /* parent */
-      log("child %d", pid);     /* display child process pid */
+      // execl("/bin/sh", "sh", "-c", cmd, 0);     /* pid does not change */
+      system(cmd);
 
       // display memory usage
       if (monitor->memory) {
         char *proc;
 
-        sprintf(proc, "cat /proc/%d/status", pid);
         pid2 = fork();
         if (pid2 == 0) {    /* child */
           signal(SIGTERM, SIG_DFL);
           signal(SIGQUIT, SIG_DFL);     
+          sprintf(proc, "cat /proc/%d/status", getppid());
           log("memory usage of current process");
           execl("/bin/sh", "sh", "-c", proc, 0);
+          perror("execl()");
         } else {            /* parent */
           log("child %d (for memory)", pid2);
           wait(NULL);
         }     
       }
+
+      perror("execl()");
+      exit(1);
+    default:    /* parent */
+      log("child %d", pid);     /* display child process pid */
 
       // write pidfile
       if (monitor->pidfile) {
