@@ -597,7 +597,8 @@ on_network(command_t *self) {
  * --memory
  */
 on_memory(command_t *self) {
-
+  monitor_t *monitor = (monitor_t *) self->data;
+  monitor->memory = true;
 }
 
 /*
