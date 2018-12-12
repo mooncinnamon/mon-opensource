@@ -1,7 +1,13 @@
 # Team members
+<<<<<<< HEAD
   * B289040 박정민
   * B689021 문유빈
   * B489077 진호용
+=======
+  B289040 박정민
+  B689021 문유빈
+  B489077 진호용
+>>>>>>> Add team members to Readme file
 
 # mon(1)
 
@@ -45,7 +51,7 @@ Options:
   -a, --attempts <n>            retry attempts within 60 seconds [10]
   -R, --on-restart <cmd>        execute <cmd> on restarts
   -E, --on-error <cmd>          execute <cmd> on error
-  -r, --memory                  write memory usage to logfile
+  -r, --memory                  display memory usage
 
 ```
 
