@@ -620,6 +620,7 @@ main(int argc, char **argv){
   monitor.clock = 60000;
   monitor.show_status = false;
   monitor.network = false;
+  monitor.memory = false;
 
   command_t program;
   command_init(&program, "mon", VERSION);
