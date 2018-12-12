@@ -214,7 +214,9 @@ show_status_of(const char *pidfile) {
 
 void
 redirect_stdio_to(const char *file) {
-  int logfd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0755);
+  // int logfd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0755);
+  int logfd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0755);   // for testing
+
   int nullfd = open("/dev/null", O_RDONLY, 0);
 
   if (-1 == logfd) {
@@ -427,9 +429,10 @@ void display_memory_usage(void) {
 void
 start(const char *cmd, monitor_t *monitor) {
 exec: {
-  pid_t pid = fork();
+  pid_t pid, pid2;
   int status;
 
+  pid = fork();
   switch (pid) {
     case -1:
       perror("fork()");
@@ -438,11 +441,28 @@ exec: {
       signal(SIGTERM, SIG_DFL);
       signal(SIGQUIT, SIG_DFL);
       log("sh -c \"%s\"", cmd);
-      execl("/bin/sh", "sh", "-c", cmd, 0);
+      execl("/bin/sh", "sh", "-c", cmd, 0);     /* pid does not change */
       perror("execl()");
       exit(1);
     default:    /* parent */
       log("child %d", pid);     /* display child process pid */
+
+      // display memory usage
+      if (monitor->memory) {
+        char *proc;
+
+        sprintf(proc, "cat /proc/%d/status", pid);
+        pid2 = fork();
+        if (pid2 == 0) {    /* child */
+          signal(SIGTERM, SIG_DFL);
+          signal(SIGQUIT, SIG_DFL);     
+          log("memory usage of current process");
+          execl("/bin/sh", "sh", "-c", proc, 0);
+        } else {            /* parent */
+          log("child %d (for memory)", pid2);
+          wait(NULL);
+        }     
+      }
 
       // write pidfile
       if (monitor->pidfile) {
@@ -670,11 +690,6 @@ main(int argc, char **argv){
   if (monitor.daemon) {
     daemonize();
     redirect_stdio_to(monitor.logfile);
-  }
-
-  if (monitor.memory) {
-    display_memory_usage();
-    exit(0);
   }
 
   // write mon pidfile
