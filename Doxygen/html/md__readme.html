@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>mon: mon(1)</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">mon
+   &#160;<span id="projectnumber">1.2.3</span>
+   </div>
+   <div id="projectbrief">Single process monitor program</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('md__readme.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mon(1) </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Super-simple monitoring program.</p>
+<p><code>mon</code> spawned from the needlessly complex frustration that tools like <a href="http://mmonit.com/monit/">monit</a> provide, with their awkward DSLs and setup. <code>mon</code> is written in C, uses less than 400kb of memory, and is incredibly simple to set up.</p>
+<h2>Installation</h2>
+<div class="fragment"><div class="line">$ make install</div></div><!-- fragment --><p>Too lazy to clone?:</p>
+<div class="fragment"><div class="line">$ (mkdir /tmp/mon &amp;&amp; cd /tmp/mon &amp;&amp; curl -L# https://github.com/tj/mon/archive/master.tar.gz | tar zx --strip 1 &amp;&amp; make install &amp;&amp; rm -rf /tmp/mon)</div></div><!-- fragment --><h2>Usage</h2>
+<div class="fragment"><div class="line">Usage: mon [options] &lt;command&gt;</div><div class="line"></div><div class="line">Options:</div><div class="line"></div><div class="line">  -V, --version                 output program version</div><div class="line">  -h, --help                    output help information</div><div class="line">  -l, --log &lt;path&gt;              specify logfile [mon.log]</div><div class="line">  -s, --sleep &lt;sec&gt;             sleep seconds before re-executing [1]</div><div class="line">  -S, --status                  check status of --pidfile</div><div class="line">  -p, --pidfile &lt;path&gt;          write pid to &lt;path&gt;</div><div class="line">  -m, --mon-pidfile &lt;path&gt;      write mon(1) pid to &lt;path&gt;</div><div class="line">  -P, --prefix &lt;str&gt;            add a log prefix</div><div class="line">  -d, --daemonize               daemonize the program</div><div class="line">  -a, --attempts &lt;n&gt;            retry attempts within 60 seconds [10]</div><div class="line">  -R, --on-restart &lt;cmd&gt;        execute &lt;cmd&gt; on restarts</div><div class="line">  -E, --on-error &lt;cmd&gt;          execute &lt;cmd&gt; on error</div><div class="line">  -r, --memory                  write memory usage to logfile</div></div><!-- fragment --><h2>Example</h2>
+<p>The most simple use of <code>mon(1)</code> is to simply keep a command running:</p>
+<div class="fragment"><div class="line">$ mon ./myprogram</div><div class="line">mon : pid 50395</div><div class="line">mon : child 50396</div><div class="line">mon : sh -c &quot;./example/program.sh&quot;</div><div class="line">one</div><div class="line">two</div><div class="line">three</div></div><!-- fragment --><p>You may daemonize mon and disassociate from the term with <code>-d</code>:</p>
+<div class="fragment"><div class="line">$ mon ./myprogram -d</div><div class="line">mon : pid 50413</div></div><!-- fragment --><h2>Failure alerts</h2>
+<p><code>mon(1)</code> will continue to attempt restarting your program unless the maximum number of <code>--attempts</code> has been exceeded within 60 seconds. Each time a restart is performed the <code>--on-restart</code> command is executed, and when <code>mon(1)</code> finally bails the <code>--on-error</code> command is then executed before mon itself exits and gives up.</p>
+<p>For example the following will echo "hey" three times before mon realizes that the program is unstable, since it's exiting immediately, thus finally invoking <code>./email.sh</code>, or any other script you like.</p>
+<p>```js mon "echo hey" &ndash;attempts 3 &ndash;on-error ./email.sh mon : child 48386 mon : sh -c "echo hey" hey mon : last restart less than one second ago mon : 3 attempts remaining mon : child 48387 mon : sh -c "echo hey" hey mon : last restart less than one second ago mon : 2 attempts remaining mon : child 48388 mon : sh -c "echo hey" hey mon : last restart less than one second ago mon : 1 attempts remaining mon : 3 restarts within less than one second, bailing mon : on error <code>sh test.sh</code> emailed failure notice to <a href="#" onclick="location.href='mai'+'lto:'+'tob'+'i@'+'fer'+'re'+'t-l'+'an'+'d.c'+'om'; return false;">tobi@<span style="display: none;">.nosp@m.</span>ferr<span style="display: none;">.nosp@m.</span>et-la<span style="display: none;">.nosp@m.</span>nd.c<span style="display: none;">.nosp@m.</span>om</a> mon : bye :) </p><div class="fragment"><div class="line">  __NOTE__: The process id is passed as an argument to both `--on-error` and `--on-restart` scripts.</div><div class="line"></div><div class="line">## Managing several mon(1) processes</div><div class="line"></div><div class="line">  `mon(1)` is designed to monitor a single program only, this means a few things,</div><div class="line">  firstly that a single `mon(1)` may crash and it will not influence other programs,</div><div class="line">  secondly that the &quot;configuration&quot; for `mon(1)` is simply a shell script,</div><div class="line">  no need for funky weird inflexible DSLs.</div><div class="line"></div><div class="line">```bash</div><div class="line">#!/usr/bin/env bash</div><div class="line"></div><div class="line">pids=&quot;/var/run&quot;</div><div class="line">app=&quot;/www/example.com&quot;</div><div class="line"></div><div class="line">mon -d redis-server -p $pids/redis.pid</div><div class="line">mon -d &quot;node $app/app&quot; -p $pids/app-0.pid</div><div class="line">mon -d &quot;node $app/jobs&quot; -p $pids/jobs-0.pid</div><div class="line">mon -d &quot;node $app/jobs&quot; -p $pids/jobs-1.pid</div><div class="line">mon -d &quot;node $app/jobs&quot; -p $pids/jobs-2.pid</div><div class="line">mon -d &quot;node $app/image&quot; -p $pids/image-0.pid</div><div class="line">mon -d &quot;node $app/image&quot; -p $pids/image-1.pid</div><div class="line">mon -d &quot;node $app/image-broker&quot; -p $pids/image-broker.pid</div></div><!-- fragment --><p>I highly recommend checking out jgallen23's <a href="https://github.com/jgallen23/mongroup">mongroup(1)</a>, which provides a great interface for managing any number of <code>mon(1)</code> instances.</p>
+<h2>Logs</h2>
+<p>By default <code>mon(1)</code> logs to stdio, however when daemonized it will default to writing a log file named <code>./mon.log</code>. If you have several instances you may wish to <code>--prefix</code> the log lines, or specify separate files.</p>
+<h2>Signals</h2>
+<ul>
+<li><b>SIGQUIT</b> graceful shutdown</li>
+<li><b>SIGTERM</b> graceful shutdown</li>
+</ul>
+<h2>Links</h2>
+<p>Tools built with <code>mon(1)</code>:</p>
+<ul>
+<li><a href="https://github.com/jgallen23/mongroup">mongroup(1)</a> - monitor a group of processes (shell script)</li>
+<li><a href="https://github.com/visionmedia/node-mongroup">node-mongroup</a> - node implementation of mongroup(1)</li>
+</ul>
+<h1>License</h1>
+<p>MIT</p>
+<h1>Build Status</h1>
+<p><a href="http://travis-ci.org/visionmedia/mon"></a> </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">다음에 의해 생성됨 : 
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
+</body>
+</html>

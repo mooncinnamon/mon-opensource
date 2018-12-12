@@ -1,0 +1,262 @@
+\hypertarget{mon_8c}{}\section{src/mon.c 파일 참조}
+\label{mon_8c}\index{src/mon.\+c@{src/mon.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}commander.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ms.\+h\char`\"{}}\newline
+mon.\+c에 대한 include 의존 그래프
+% FIG 0
+\subsection*{데이터 구조}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{매크로}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mon_8c_a1c6d5de492ac61ad29aec7aa9a436bbf}{V\+E\+R\+S\+I\+ON}}~\char`\"{}1.\+2.\+3\char`\"{}
+\item 
+\#define \mbox{\hyperlink{mon_8c_a8aae08d19894f7af60ec6e296a52561e}{log}}(fmt,  args...)
+\end{DoxyCompactItemize}
+\subsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mon_8c_aad9796c174f7ef5d226cd169f2520fd5}{error}} (char $\ast$msg)
+\item 
+int \mbox{\hyperlink{mon_8c_a59435c8af93db3371e4fa4631892cc76}{alive}} (pid\+\_\+t pid)
+\item 
+int64\+\_\+t \mbox{\hyperlink{mon_8c_ad89de95af5388d87de7d39a8e804080f}{timestamp}} ()
+\item 
+void \mbox{\hyperlink{mon_8c_a6d028200c09b230b640afeff885842b7}{write\+\_\+pidfile}} (const char $\ast$file, pid\+\_\+t pid)
+\item 
+pid\+\_\+t \mbox{\hyperlink{mon_8c_a96abea6f0913b47e66c5721069662770}{read\+\_\+pidfile}} (const char $\ast$file)
+\item 
+void \mbox{\hyperlink{mon_8c_ae5a93c8561455a70bf611b9f546accd2}{show\+\_\+status\+\_\+of}} (const char $\ast$pidfile)
+\item 
+void \mbox{\hyperlink{mon_8c_a20c82fa443a98da5a82af3f4e9cb9880}{redirect\+\_\+stdio\+\_\+to}} (const char $\ast$file)
+\item 
+void \mbox{\hyperlink{mon_8c_afb558666024d8c16dd60af09263d619a}{graceful\+\_\+exit}} (int sig)
+\item 
+void \mbox{\hyperlink{mon_8c_a869452f0c0952acd39230fcf0ef89c1e}{daemonize}} ()
+\item 
+void \mbox{\hyperlink{mon_8c_ab0cd49657f0e49df28cf8952a8922149}{exec\+\_\+restart\+\_\+command}} (\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$monitor, pid\+\_\+t pid)
+\item 
+void \mbox{\hyperlink{mon_8c_a29c30750029f6ddcceb514483beb2aa3}{exec\+\_\+error\+\_\+command}} (\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$monitor, pid\+\_\+t pid)
+\item 
+int64\+\_\+t \mbox{\hyperlink{mon_8c_acfc962877a424d4df16c8ebf5f26bcea}{ms\+\_\+since\+\_\+last\+\_\+restart}} (\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$monitor)
+\item 
+int \mbox{\hyperlink{mon_8c_a8eb34d76b142816e4815842599d6acd1}{attempts\+\_\+exceeded}} (\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$monitor, int64\+\_\+t ms)
+\item 
+void \mbox{\hyperlink{mon_8c_a54835cbff0d59570b4cb0b8b604384e5}{start}} (const char $\ast$cmd, \mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$monitor)
+\item 
+int \mbox{\hyperlink{mon_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{매크로 문서화}
+\mbox{\Hypertarget{mon_8c_a8aae08d19894f7af60ec6e296a52561e}\label{mon_8c_a8aae08d19894f7af60ec6e296a52561e}} 
+\index{mon.\+c@{mon.\+c}!log@{log}}
+\index{log@{log}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{log}{log}}
+{\footnotesize\ttfamily \#define log(\begin{DoxyParamCaption}\item[{}]{fmt,  }\item[{}]{args... }\end{DoxyParamCaption})}
+
+{\bfseries 값\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{ \(\backslash\)
+    if (prefix) \{ \(\backslash\)
+      printf(\textcolor{stringliteral}{"mon : %s : "} fmt \textcolor{stringliteral}{"\(\backslash\)n"}, prefix, ##args); \(\backslash\)
+      fflush(stdout); \(\backslash\)
+    \} \textcolor{keywordflow}{else} \{ \(\backslash\)
+      printf(\textcolor{stringliteral}{"mon : "} fmt \textcolor{stringliteral}{"\(\backslash\)n"}, ##args); \(\backslash\)
+      fflush(stdout); \(\backslash\)
+    \} \(\backslash\)
+  \} \textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+
+
+mon.\+c 파일의 65 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_a1c6d5de492ac61ad29aec7aa9a436bbf}\label{mon_8c_a1c6d5de492ac61ad29aec7aa9a436bbf}} 
+\index{mon.\+c@{mon.\+c}!V\+E\+R\+S\+I\+ON@{V\+E\+R\+S\+I\+ON}}
+\index{V\+E\+R\+S\+I\+ON@{V\+E\+R\+S\+I\+ON}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{V\+E\+R\+S\+I\+ON}{VERSION}}
+{\footnotesize\ttfamily \#define V\+E\+R\+S\+I\+ON~\char`\"{}1.\+2.\+3\char`\"{}}
+
+
+
+mon.\+c 파일의 28 번째 라인에서 정의되었습니다.
+
+
+
+\subsection{함수 문서화}
+\mbox{\Hypertarget{mon_8c_a59435c8af93db3371e4fa4631892cc76}\label{mon_8c_a59435c8af93db3371e4fa4631892cc76}} 
+\index{mon.\+c@{mon.\+c}!alive@{alive}}
+\index{alive@{alive}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{alive()}{alive()}}
+{\footnotesize\ttfamily int alive (\begin{DoxyParamCaption}\item[{pid\+\_\+t}]{pid }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 91 번째 라인에서 정의되었습니다.
+
+이 함수를 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 1
+\mbox{\Hypertarget{mon_8c_a8eb34d76b142816e4815842599d6acd1}\label{mon_8c_a8eb34d76b142816e4815842599d6acd1}} 
+\index{mon.\+c@{mon.\+c}!attempts\+\_\+exceeded@{attempts\+\_\+exceeded}}
+\index{attempts\+\_\+exceeded@{attempts\+\_\+exceeded}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{attempts\+\_\+exceeded()}{attempts\_exceeded()}}
+{\footnotesize\ttfamily int attempts\+\_\+exceeded (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$}]{monitor,  }\item[{int64\+\_\+t}]{ms }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 306 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_a869452f0c0952acd39230fcf0ef89c1e}\label{mon_8c_a869452f0c0952acd39230fcf0ef89c1e}} 
+\index{mon.\+c@{mon.\+c}!daemonize@{daemonize}}
+\index{daemonize@{daemonize}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{daemonize()}{daemonize()}}
+{\footnotesize\ttfamily void daemonize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 254 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_aad9796c174f7ef5d226cd169f2520fd5}\label{mon_8c_aad9796c174f7ef5d226cd169f2520fd5}} 
+\index{mon.\+c@{mon.\+c}!error@{error}}
+\index{error@{error}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily void error (\begin{DoxyParamCaption}\item[{char $\ast$}]{msg }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 81 번째 라인에서 정의되었습니다.
+
+이 함수를 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 2
+\mbox{\Hypertarget{mon_8c_a29c30750029f6ddcceb514483beb2aa3}\label{mon_8c_a29c30750029f6ddcceb514483beb2aa3}} 
+\index{mon.\+c@{mon.\+c}!exec\+\_\+error\+\_\+command@{exec\+\_\+error\+\_\+command}}
+\index{exec\+\_\+error\+\_\+command@{exec\+\_\+error\+\_\+command}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{exec\+\_\+error\+\_\+command()}{exec\_error\_command()}}
+{\footnotesize\ttfamily void exec\+\_\+error\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$}]{monitor,  }\item[{pid\+\_\+t}]{pid }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 281 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_ab0cd49657f0e49df28cf8952a8922149}\label{mon_8c_ab0cd49657f0e49df28cf8952a8922149}} 
+\index{mon.\+c@{mon.\+c}!exec\+\_\+restart\+\_\+command@{exec\+\_\+restart\+\_\+command}}
+\index{exec\+\_\+restart\+\_\+command@{exec\+\_\+restart\+\_\+command}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{exec\+\_\+restart\+\_\+command()}{exec\_restart\_command()}}
+{\footnotesize\ttfamily void exec\+\_\+restart\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$}]{monitor,  }\item[{pid\+\_\+t}]{pid }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 268 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_afb558666024d8c16dd60af09263d619a}\label{mon_8c_afb558666024d8c16dd60af09263d619a}} 
+\index{mon.\+c@{mon.\+c}!graceful\+\_\+exit@{graceful\+\_\+exit}}
+\index{graceful\+\_\+exit@{graceful\+\_\+exit}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{graceful\+\_\+exit()}{graceful\_exit()}}
+{\footnotesize\ttfamily void graceful\+\_\+exit (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 237 번째 라인에서 정의되었습니다.
+
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 3
+\mbox{\Hypertarget{mon_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{mon_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{mon.\+c@{mon.\+c}!main@{main}}
+\index{main@{main}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 498 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_acfc962877a424d4df16c8ebf5f26bcea}\label{mon_8c_acfc962877a424d4df16c8ebf5f26bcea}} 
+\index{mon.\+c@{mon.\+c}!ms\+\_\+since\+\_\+last\+\_\+restart@{ms\+\_\+since\+\_\+last\+\_\+restart}}
+\index{ms\+\_\+since\+\_\+last\+\_\+restart@{ms\+\_\+since\+\_\+last\+\_\+restart}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{ms\+\_\+since\+\_\+last\+\_\+restart()}{ms\_since\_last\_restart()}}
+{\footnotesize\ttfamily int64\+\_\+t ms\+\_\+since\+\_\+last\+\_\+restart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$}]{monitor }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 294 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_a96abea6f0913b47e66c5721069662770}\label{mon_8c_a96abea6f0913b47e66c5721069662770}} 
+\index{mon.\+c@{mon.\+c}!read\+\_\+pidfile@{read\+\_\+pidfile}}
+\index{read\+\_\+pidfile@{read\+\_\+pidfile}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{read\+\_\+pidfile()}{read\_pidfile()}}
+{\footnotesize\ttfamily pid\+\_\+t read\+\_\+pidfile (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 126 번째 라인에서 정의되었습니다.
+
+이 함수를 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 4
+\mbox{\Hypertarget{mon_8c_a20c82fa443a98da5a82af3f4e9cb9880}\label{mon_8c_a20c82fa443a98da5a82af3f4e9cb9880}} 
+\index{mon.\+c@{mon.\+c}!redirect\+\_\+stdio\+\_\+to@{redirect\+\_\+stdio\+\_\+to}}
+\index{redirect\+\_\+stdio\+\_\+to@{redirect\+\_\+stdio\+\_\+to}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{redirect\+\_\+stdio\+\_\+to()}{redirect\_stdio\_to()}}
+{\footnotesize\ttfamily void redirect\+\_\+stdio\+\_\+to (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 213 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_ae5a93c8561455a70bf611b9f546accd2}\label{mon_8c_ae5a93c8561455a70bf611b9f546accd2}} 
+\index{mon.\+c@{mon.\+c}!show\+\_\+status\+\_\+of@{show\+\_\+status\+\_\+of}}
+\index{show\+\_\+status\+\_\+of@{show\+\_\+status\+\_\+of}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{show\+\_\+status\+\_\+of()}{show\_status\_of()}}
+{\footnotesize\ttfamily void show\+\_\+status\+\_\+of (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pidfile }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 160 번째 라인에서 정의되었습니다.
+
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.\+:
+% FIG 5
+\mbox{\Hypertarget{mon_8c_a54835cbff0d59570b4cb0b8b604384e5}\label{mon_8c_a54835cbff0d59570b4cb0b8b604384e5}} 
+\index{mon.\+c@{mon.\+c}!start@{start}}
+\index{start@{start}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void start (\begin{DoxyParamCaption}\item[{const char $\ast$}]{cmd,  }\item[{\mbox{\hyperlink{structmonitor__t}{monitor\+\_\+t}} $\ast$}]{monitor }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 328 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_ad89de95af5388d87de7d39a8e804080f}\label{mon_8c_ad89de95af5388d87de7d39a8e804080f}} 
+\index{mon.\+c@{mon.\+c}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{timestamp()}{timestamp()}}
+{\footnotesize\ttfamily int64\+\_\+t timestamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 100 번째 라인에서 정의되었습니다.
+
+\mbox{\Hypertarget{mon_8c_a6d028200c09b230b640afeff885842b7}\label{mon_8c_a6d028200c09b230b640afeff885842b7}} 
+\index{mon.\+c@{mon.\+c}!write\+\_\+pidfile@{write\+\_\+pidfile}}
+\index{write\+\_\+pidfile@{write\+\_\+pidfile}!mon.\+c@{mon.\+c}}
+\subsubsection{\texorpdfstring{write\+\_\+pidfile()}{write\_pidfile()}}
+{\footnotesize\ttfamily void write\+\_\+pidfile (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file,  }\item[{pid\+\_\+t}]{pid }\end{DoxyParamCaption})}
+
+
+
+mon.\+c 파일의 112 번째 라인에서 정의되었습니다.
+
