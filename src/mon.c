@@ -593,6 +593,13 @@ on_network(command_t *self) {
 }
 
 /*
+ * --memory
+ */
+on_memory(command_t *self) {
+
+}
+
+/*
  * [options] <cmd>
  */
 
@@ -627,6 +634,7 @@ main(int argc, char **argv){
   command_option(&program, "-R", "--on-restart <cmd>", "execute <cmd> on restarts", on_restart);
   command_option(&program, "-E", "--on-error <cmd>", "execute <cmd> on error", on_error);
   command_option(&program, "-n", "--net", "show per-second packet information on the network interface", on_network);
+  command_option(&program, "-r", "--memory", "display memory usage", on_memory);
   command_parse(&program, argc, argv);
 
   if (monitor.network) {
