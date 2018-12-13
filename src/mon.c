@@ -325,82 +325,6 @@ attempts_exceeded(monitor_t *monitor, int64_t ms) {
   return 1;
 }
 
-void
-read_network(long *rx_bytes, long *tx_bytes) {
-  const char *path_rxb = "/sys/class/net/eth0/statistics/rx_bytes"; //받은 바이트 수
-  const char *path_txb = "/sys/class/net/eth0/statistics/tx_bytes"; //전송 된 바이트 수
-  off_t size_rxb;
-  struct stat s_rxb;
-  off_t size_txb;
-  struct stat s_txb;
-
-  // stat rxb
-  if (stat(path_rxb, &s_rxb) < 0) {
-    perror("stat()");
-    exit(1);
-  }
-  // stat txb
-  if (stat(path_txb, &s_txb) < 0) {
-    perror("stat()");
-    exit(1);
-  }
-
-  size_rxb = s_rxb.st_size;
-  size_txb = s_txb.st_size;
-
-  // opens rxb
-  int fd_rxb = open(path_rxb, O_RDONLY, 0644);
-  if (fd_rxb < 0) {
-    perror("open()");
-    exit(1);
-  }
-  // opens txb
-  int fd_txb = open(path_txb, O_RDONLY, 0644);
-  if (fd_txb < 0) {
-    perror("open()");
-    exit(1);
-  }
-
-  // read
-  char buf_rxb[size_rxb];
-  read(fd_rxb, buf_rxb, size_rxb);
-
-  char buf_txb[size_txb];
-  read(fd_txb, buf_txb, size_txb);
-
-  // current bytes
-  *rx_bytes = atoi(buf_rxb);
-  *tx_bytes = atoi(buf_txb);
-
-  close(fd_rxb);
-  close(fd_txb);
-}
-
-/*
- * show per-second packet information on the network interface.
- */
-
-void
-show_network() {
-  long before_rxb;
-  long before_txb;
-  long current_rxb;
-  long current_txb;
-
-  printf("%14s %12s %12s", "time", "received b/s", "transmit b/s\n");
-  while(1) {
-    read_network(&before_rxb, &before_txb);
-    sleep(1);
-    read_network(&current_rxb, &current_txb);
-
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
-    printf("%.2d-%.2d %.2d:%.2d:%.2d ", tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-    printf("%8d b/s %8d b/s\n", (current_rxb-before_rxb), (current_txb-before_txb));
-    signal(SIGINT, SIG_DFL);
-  }
-}
-
 /*
  * read information files on the network interface
  */
@@ -729,11 +653,6 @@ main(int argc, char **argv){
   command_option(&program, "-n", "--net", "show per-second packet information on the network interface", on_network);
   command_option(&program, "-r", "--memory", "display memory usage", on_memory);
   command_parse(&program, argc, argv);
-
-  if (monitor.network) {
-    show_network();
-    exit(0);
-  }
 
   if (monitor.show_status) {
     if (!monitor.pidfile) error("--pidfile required");
