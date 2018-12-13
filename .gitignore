@@ -1,3 +1,4 @@
 *.o
 mon.log
 mon
+mon-test
