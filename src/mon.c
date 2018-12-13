@@ -455,7 +455,7 @@ exec: {
             if (fork() == 0) {
               signal(SIGTERM, SIG_DFL);
               signal(SIGQUIT, SIG_DFL);
-              execlp("ps", "ps", "-p", mpid, "-o", "%cpu, %mem", (char *)0);
+              execlp("ps", "ps", "-p", mpid, "-o", "%cpu,%mem,cmd", (char *)0);
               perror("execl()");
               exit(1);
             } else {
