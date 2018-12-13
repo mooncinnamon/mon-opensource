@@ -430,7 +430,7 @@ void
 start(const char *cmd, monitor_t *monitor) {
 exec: {
   pid_t pid, pid2;
-  int status;
+  int status, status2;
 
   pid = fork();
   switch (pid) {
@@ -441,17 +441,38 @@ exec: {
       signal(SIGTERM, SIG_DFL);
       signal(SIGQUIT, SIG_DFL);
       log("sh -c \"%s\"", cmd);
+
+      // display memory usage
+      if (monitor->memory) {
+        char mpid[6];
+        sprintf(mpid, "%d", getpid());
+
+        pid2 = fork();
+        if (pid2 == 0) {    /* child */
+          int i;
+          sleep(1);
+          do {
+            if (fork() == 0) {
+              signal(SIGTERM, SIG_DFL);
+              signal(SIGQUIT, SIG_DFL);
+              execlp("ps", "ps", "-p", mpid, "-o", "%cpu, %mem", (char *)0);
+              perror("execl()");
+              exit(1);
+            } else {
+              wait(NULL);
+              sleep(1);
+            }
+          } while(kill(getppid(), 0) == 0);
+          exit(0);
+        }
+        // waitpid(pid2, NULL, 0);
+      }
+
       execl("/bin/sh", "sh", "-c", cmd, 0);     /* pid does not change */
       perror("execl()");
       exit(1);
     default:    /* parent */
       log("child %d", pid);     /* display child process pid */
-
-      // display memory usage
-      if (monitor->memory) {
-        /* add code to display memory usage for child process */
-        log("display memory usage");
-      }
 
       // write pidfile
       if (monitor->pidfile) {
@@ -491,9 +512,10 @@ exec: {
           log("%d restarts within %s, bailing", monitor->max_attempts, time);
           if (monitor->on_error) exec_error_command(monitor, pid);
           log("bye :)");
+          // kill(pid2, SIGINT);
           exit(2);
         }
-
+        // kill(pid2, SIGINT);
         goto exec;
       }
   }
@@ -628,7 +650,7 @@ main(int argc, char **argv){
   monitor.daemon = 0;
   monitor.sleepsec = 1;
   // monitor.max_attempts = 10
-  monitor.max_attempts = 3;     // for testing
+  monitor.max_attempts = 1;     // for testing
   monitor.attempts = 0;
   monitor.last_restart_at = 0;
   monitor.clock = 60000;
