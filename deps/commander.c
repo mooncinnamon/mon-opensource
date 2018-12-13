@@ -215,7 +215,7 @@ command_parse_args(command_t *self, int argc, char **argv) {
         }
 
         // invoke callback
-        option->cb(self);
+        option->cb(self);       // this is where on_* function are called
         goto match;
       }
     }

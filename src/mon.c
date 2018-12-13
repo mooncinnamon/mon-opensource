@@ -52,6 +52,7 @@ typedef struct {
   int attempts;
   bool show_status;
   bool network;
+  bool memory;
 } monitor_t;
 
 /*
@@ -213,7 +214,9 @@ show_status_of(const char *pidfile) {
 
 void
 redirect_stdio_to(const char *file) {
-  int logfd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0755);
+  // int logfd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0755);
+  int logfd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0755);   // for testing
+
   int nullfd = open("/dev/null", O_RDONLY, 0);
 
   if (-1 == logfd) {
@@ -399,28 +402,132 @@ show_network() {
 }
 
 /*
+ * read information files on the network interface
+ */
+#define FILE_SIZE 4096
+
+void
+read_network(long *rx_bytes, long *tx_bytes, long *rx_packets, long *tx_packets) {
+  char *path_rxb = "/sys/class/net/eth0/statistics/rx_bytes"; //받은 바이트 수
+  char *path_txb = "/sys/class/net/eth0/statistics/tx_bytes"; //전송 된 바이트 수
+  char *path_rxp = "/sys/class/net/eth0/statistics/rx_packets"; //받은 패킷 수
+  char *path_txp = "/sys/class/net/eth0/statistics/tx_packets"; //전송 된 패킷 수
+  int fd_rxb;
+  int fd_txb;
+  int fd_rxp;
+  int fd_txp;
+
+  // opens rxb
+  if ((fd_rxb = open(path_rxb, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_rxb)");
+    exit(1);
+  }
+  // opens txb
+  if ((fd_txb = open(path_txb, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_txb)");
+    exit(1);
+  }
+  // opens rxp
+  if ((fd_rxp = open(path_rxp, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_rxp)");
+    exit(1);
+  }
+  // opens txp
+  if ((fd_txp = open(path_txp, O_RDONLY, 0644)) < 0) {
+    perror("open(fd_txp)");
+    exit(1);
+  }
+
+  // read
+  char buf_rxb[FILE_SIZE];
+  read(fd_rxb, buf_rxb, FILE_SIZE);
+  char buf_txb[FILE_SIZE];
+  read(fd_txb, buf_txb, FILE_SIZE);
+  char buf_rxp[FILE_SIZE];
+  read(fd_rxp, buf_rxp, FILE_SIZE);
+  char buf_txp[FILE_SIZE];
+  read(fd_txp, buf_txp, FILE_SIZE);
+
+  // current bytes
+  *rx_bytes = atoi(buf_rxb);
+  *tx_bytes = atoi(buf_txb);
+  // number of current packets
+  *rx_packets = atoi(buf_rxp);
+  *tx_packets = atoi(buf_txp);
+
+  close(fd_rxb);
+  close(fd_txb);
+  close(fd_rxp);
+  close(fd_txp);
+}
+
+/*
+ * show per-second packet information on the network interface.
+ */
+
+void
+show_network() {
+  long before_rxb;
+  long before_txb;
+  long before_rxp;
+  long before_txp;
+  long current_rxb;
+  long current_txb;
+  long current_rxp;
+  long current_txp;
+
+  printf("%14s %12s %12s %13s %13s\n", "time", "received b/s", "transmit b/s", "received pk/s", "transmit pk/s");
+
+  while(1) {
+    read_network(&before_rxb, &before_txb, &before_rxp, &before_txp);
+    sleep(1);
+    read_network(&current_rxb, &current_txb, &current_rxp, &current_txp);
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    printf("%.2d-%.2d %.2d:%.2d:%.2d ", tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    printf("%8d b/s %8d b/s %8d pk/s %8d pk/s\n", (current_rxb-before_rxb), (current_txb-before_txb), (current_rxp-before_rxp), (current_txp-before_txp));
+    signal(SIGINT, SIG_DFL);
+  }
+}
+
+/*
+ * display memory usage of current program
+ */
+void display_memory_usage(void) {
+  printf("Testing code...\n");
+}
+
+/*
  * Monitor the given `cmd`.
  */
 
 void
 start(const char *cmd, monitor_t *monitor) {
 exec: {
-  pid_t pid = fork();
+  pid_t pid, pid2;
   int status;
 
+  pid = fork();
   switch (pid) {
     case -1:
       perror("fork()");
       exit(1);
-    case 0:
+    case 0:     /* child */
       signal(SIGTERM, SIG_DFL);
       signal(SIGQUIT, SIG_DFL);
       log("sh -c \"%s\"", cmd);
-      execl("/bin/sh", "sh", "-c", cmd, 0);
+      execl("/bin/sh", "sh", "-c", cmd, 0);     /* pid does not change */
       perror("execl()");
       exit(1);
-    default:
-      log("child %d", pid);
+    default:    /* parent */
+      log("child %d", pid);     /* display child process pid */
+
+      // display memory usage
+      if (monitor->memory) {
+        /* add code to display memory usage for child process */
+        log("display memory usage");
+      }
 
       // write pidfile
       if (monitor->pidfile) {
@@ -428,7 +535,7 @@ exec: {
         write_pidfile(monitor->pidfile, pid);
       }
 
-      // wait for exit
+      // suspend parent until child exits
       waitpid(pid, &status, 0);
 
       // signalled
@@ -439,7 +546,7 @@ exec: {
         goto error;
       }
 
-      // check status
+      // check exit status
       if (WEXITSTATUS(status)) {
         log("exit(%d)", WEXITSTATUS(status));
         log("sleep(%d)", monitor->sleepsec);
@@ -453,7 +560,7 @@ exec: {
         int64_t ms = ms_since_last_restart(monitor);
         monitor->last_restart_at = timestamp();
         log("last restart %s ago", milliseconds_to_long_string(ms));
-        log("%d attempts remaining", monitor->max_attempts - monitor->attempts);
+        log("%d attempts remaining\n", monitor->max_attempts - monitor->attempts);
 
         if (attempts_exceeded(monitor, ms)) {
           char *time = milliseconds_to_long_string(60000 - monitor->clock);
@@ -579,8 +686,13 @@ on_network(command_t *self) {
 }
 
 /*
- * [options] <cmd>
+ * --memory
  */
+on_memory(command_t *self) {
+  monitor_t *monitor = (monitor_t *) self->data;
+  monitor->memory = true;
+}
+
 
 int
 main(int argc, char **argv){
@@ -591,12 +703,14 @@ main(int argc, char **argv){
   monitor.logfile = "mon.log";
   monitor.daemon = 0;
   monitor.sleepsec = 1;
-  monitor.max_attempts = 10;
+  // monitor.max_attempts = 10
+  monitor.max_attempts = 3;     // for testing
   monitor.attempts = 0;
   monitor.last_restart_at = 0;
   monitor.clock = 60000;
   monitor.show_status = false;
   monitor.network = false;
+  monitor.memory = false;
 
   command_t program;
   command_init(&program, "mon", VERSION);
@@ -613,7 +727,13 @@ main(int argc, char **argv){
   command_option(&program, "-R", "--on-restart <cmd>", "execute <cmd> on restarts", on_restart);
   command_option(&program, "-E", "--on-error <cmd>", "execute <cmd> on error", on_error);
   command_option(&program, "-n", "--net", "show per-second packet information on the network interface", on_network);
+  command_option(&program, "-r", "--memory", "display memory usage", on_memory);
   command_parse(&program, argc, argv);
+
+  if (monitor.network) {
+    show_network();
+    exit(0);
+  }
 
   if (monitor.show_status) {
     if (!monitor.pidfile) error("--pidfile required");
