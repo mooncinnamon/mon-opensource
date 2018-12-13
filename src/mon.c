@@ -445,14 +445,14 @@ exec: {
       // display memory usage
       if (monitor->memory) {
         char mpid[10];
-        sprintf(mpid, "%d", getpid());
-
+        sprintf(mpid, "%d", getpid());    /* the process with this pid starts the command */
+                                          /* casting for execlp */
         pid2 = fork();
         if (pid2 == 0) {    /* child */
           int i;
-          pid_t ppid = getppid();
-          sleep(1);
-          do {
+          pid_t ppid = getppid();         /* get pid for the process that runs the command */
+          sleep(1);                       /* to read after the command starts */
+          do {    /* keep displaying until the monitoring process dies */
             if (fork() == 0) {  
               signal(SIGTERM, SIG_DFL);
               signal(SIGQUIT, SIG_DFL);
@@ -469,7 +469,7 @@ exec: {
         // waitpid(pid2, NULL, 0);
       }
 
-      execl("/bin/sh", "sh", "-c", cmd, 0);     /* pid does not change */
+      execl("/bin/sh", "sh", "-c", cmd, 0);     /* pid does not change after execl() */
       perror("execl()");
       exit(1);
     default:    /* parent */
@@ -683,7 +683,7 @@ main(int argc, char **argv){
     exit(0);
   }
 
-  if (monitor.network) {
+  if (monitor.network) {    /* this has to be called before daemonize */
     show_network();
     exit(0);
   }
