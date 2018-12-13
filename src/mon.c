@@ -444,12 +444,13 @@ exec: {
 
       // display memory usage
       if (monitor->memory) {
-        char mpid[6];
+        char mpid[10];
         sprintf(mpid, "%d", getpid());
 
         pid2 = fork();
         if (pid2 == 0) {    /* child */
           int i;
+          pid_t ppid = getppid();
           sleep(1);
           do {
             if (fork() == 0) {  
@@ -462,7 +463,7 @@ exec: {
               wait(NULL);
               sleep(1);
             }
-          } while(kill(getppid(), 0) == 0);     /* until monitoring process dies */
+          } while(kill(ppid, 0) == 0);     /* until monitoring process dies */
           exit(0);
         }
         // waitpid(pid2, NULL, 0);
