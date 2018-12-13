@@ -45,6 +45,7 @@ Options:
   -a, --attempts <n>            retry attempts within 60 seconds [10]
   -R, --on-restart <cmd>        execute <cmd> on restarts
   -E, --on-error <cmd>          execute <cmd> on error
+  -n, --net                     display network usage of the system
   -M, --memory                  display memory and cpu usage
 
 ```
