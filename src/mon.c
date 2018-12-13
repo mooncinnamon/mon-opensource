@@ -452,7 +452,7 @@ exec: {
           int i;
           sleep(1);
           do {
-            if (fork() == 0) {
+            if (fork() == 0) {  
               signal(SIGTERM, SIG_DFL);
               signal(SIGQUIT, SIG_DFL);
               execlp("ps", "ps", "-p", mpid, "-o", "%cpu,%mem,cmd", (char *)0);
@@ -462,7 +462,7 @@ exec: {
               wait(NULL);
               sleep(1);
             }
-          } while(kill(getppid(), 0) == 0);
+          } while(kill(getppid(), 0) == 0);     /* until monitoring process dies */
           exit(0);
         }
         // waitpid(pid2, NULL, 0);
