@@ -484,7 +484,7 @@ exec: {
         int64_t ms = ms_since_last_restart(monitor);
         monitor->last_restart_at = timestamp();
         log("last restart %s ago", milliseconds_to_long_string(ms));
-        log("%d attempts remaining", monitor->max_attempts - monitor->attempts);
+        log("%d attempts remaining\n", monitor->max_attempts - monitor->attempts);
 
         if (attempts_exceeded(monitor, ms)) {
           char *time = milliseconds_to_long_string(60000 - monitor->clock);
