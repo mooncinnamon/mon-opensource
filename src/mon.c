@@ -451,7 +451,7 @@ exec: {
         if (pid2 == 0) {    /* child */
           int i;
           pid_t ppid = getppid();         /* get pid for the process that runs the command */
-          sleep(1);                       /* to read after the command starts */
+          sleep(1);                       
           do {    /* keep displaying until the monitoring process dies */
             if (fork() == 0) {  
               signal(SIGTERM, SIG_DFL);
